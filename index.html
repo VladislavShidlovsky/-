@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадебное Приглашение — Иван да Анна</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем красивые старославянские и рукописные шрифты -->
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ЭКРАН 1: Обложка сказки -->
+    <div id="welcome-screen" class="cover-bg">
+        <div class="cover-content-wrapper">
+            <div class="cover-content">
+                <h1 class="fairy-tale-title">В некотором царстве...</h1>
+                <p class="fairy-tale-subtitle">Сказ о вечной любви</p>
+                <button id="open-btn" onclick="openInvitation()">Получить приглашение</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭКРАН 2: Само приглашение -->
+    <div id="main-content" class="hidden">
+        
+        <!-- МУЗЫКАЛЬНЫЙ ТЕГ -->
+        <audio id="bg-music" src="music.mp3" loop></audio>
+
+        <!-- ПЛЕЕР: Вращающаяся кнопка-гусли -->
+        <button id="music-player-btn" class="player-stopped" onclick="toggleMusic()" title="Музыка во славу">🪕</button>
+
+        <!-- АНИМАЦИЯ: Сказочные плывущие облака на заднем плане -->
+        <div class="fairy-tale-clouds">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+        </div>
+
+        <!-- АНИМАЦИЯ 1: Класс parchment-animated отвечает за плавное раскручивание свитка -->
+        <div class="parchment-scroll parchment-animated">
+            <div class="slavic-border-top"></div>
+            
+            <!-- Блок 1: Главный анонс -->
+            <section class="tale-block headline">
+                <h2>Приглашаем тебя на нашу свадьбу</h2>
+                <h1 class="names">Иван & Анна</h1>
+                <p class="main-text">
+                    Мы рады сообщить, что <strong>21.08.2026</strong> состоится самое главное событие в нашей жизни — день нашей свадьбы! 
+                    Приглашаем Вас разделить с нами радость этого незабываемого дня.
+                </p>
+            </section>
+
+            <!-- НОВЫЙ БЛОК: Сказ о том, как Иван Анну встретил (История любви) -->
+            <section class="tale-block love-story-section">
+                <h3 class="block-title">Сказ о любви верной</h3>
+                <p class="main-text" style="font-style: italic; text-align: justify; padding: 0 10px;">
+                    «В некотором царстве, в Краснодарском государстве, встретил добрый молодец Иван красну девицу Анну. 
+                    И вспыхнула между ними любовь чистая, яко родниковая вода, да крепкая, яко столетний дуб. 
+                    Долго ли, коротко ли, а решили они идти по жизни рука об руку, судьбы свои воедино связать да пир великий в честь сего учинить...»
+                </p>
+            </section>
+
+            <!-- Блок 2: Счётчик времени и календарь -->
+            <section class="tale-block">
+                <h3 class="block-title">До пира великого осталось:</h3>
+                <div id="countdown" class="timer">
+                    <div class="timer-item"><span id="days">00</span><p>дней</p></div>
+                    <div class="timer-item"><span id="hours">00</span><p>часов</p></div>
+                    <div class="timer-item"><span id="minutes">00</span><p>минут</p></div>
+                    <div class="timer-item"><span id="seconds">00</span><p>секунд</p></div>
+                </div>
+                <button onclick="addToCalendar()" class="calendar-btn">📅 Внести в царский календарь</button>
+            </section>
+
+            <!-- Блок 3: Фотография молодых (АНИМАЦИЯ 3: Класс live-portrait для эффекта живого портрета) -->
+            <section class="tale-block photo-container">
+                <img src="lovers.jpg" alt="Иван и Анна" class="wedding-photo live-portrait">
+            </section>
+
+            <!-- Блок 4: Место проведения и адрес -->
+            <section class="tale-block location-info">
+                <h3 class="block-title">Где пир проходить будет</h3>
+                <p class="address-text">🏰 г. Краснодар, ул. Сормовская, 132</p>
+                <p class="place-name">«Казачий Хутор»</p>
+            </section>
+
+            <!-- Блок 5: Расписание дня -->
+            <section class="tale-block schedule-info">
+                <h3 class="block-title">Свадебное расписание</h3>
+                <div class="timeline">
+                    <div class="timeline-row">
+                        <span class="time">16:00</span>
+                        <span class="event">Встреча дорогих гостей</span>
+                    </div>
+                    <div class="timeline-row">
+                        <span class="time">17:00</span>
+                        <span class="event">Начало торжества великого</span>
+                    </div>
+                </div>
+            </section>
+
+                       <!-- Блок 6: Пожелания к подаркам (Сказочный свиток вина) -->
+            <section class="tale-block gifts-info" style="padding: 20px 15px;">
+                <div class="wine-scroll" style="
+                    background: linear-gradient(135deg, #fffcf5 0%, #faebd7 100%);
+                    border-left: 5px solid #d4af37;
+                    border-right: 5px solid #d4af37;
+                    padding: 20px 15px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(92, 58, 33, 0.08);
+                    margin: 0 auto;
+                    max-width: 420px;
+                ">
+                    <span style="color: #d4af37; font-size: 20px; display: block; margin-bottom: 8px;">☀️ Во благость молодым ☀️</span>
+                    <p style="
+                        font-style: italic;
+                        font-size: 17px;
+                        line-height: 1.7;
+                        color: #5c3a21;
+                        margin: 0;
+                        font-weight: 600;
+                        text-align: center;
+                    ">
+                        «Приятным подарком для нас вместо цветов будет бутылка вашего любимого вина, 
+                        которую мы откроем на ближайшем празднике».
+                    </p>
+                </div>
+            </section>
+
+
+            <!-- Блок 7: Сказочное напоминание (Царский указ) -->
+            <section class="tale-block rsvp-section" style="padding: 20px 10px;">
+                <div class="royal-decree" style="
+                    border: 3px double #8b0000;
+                    background: #fffaf0;
+                    padding: 25px 20px;
+                    margin: 0 auto;
+                    max-width: 420px;
+                    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(139, 0, 0, 0.05);
+                    border-radius: 4px;
+                    position: relative;
+                ">
+                    <p style="
+                        font-size: 18px;
+                        line-height: 1.6;
+                        color: #8b0000;
+                        font-weight: bold;
+                        margin: 0;
+                        text-align: center;
+                        letter-spacing: 0.5px;
+                    ">
+                        <span style="color: #d4af37; font-size: 22px; display: block; margin-bottom: 5px;">⚜️ Указ Царский ⚜️</span>
+                        Дабы столы ломились от явств, сообщите о своём прибытии <span style="text-decoration: underline; font-size: 20px; background: rgba(214, 175, 55, 0.15); padding: 2px 6px; border-radius: 3px;">до 15 июля</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Блок 8: Карта-картинка с кнопками навигаторов -->
+            <section class="tale-block map-section">
+                <h3 class="block-title">Карта пути-дорожки</h3>
+                <div class="map-container" style="margin-bottom: 25px;">
+                    <img src="map-preview.jpg" alt="Схема проезда к Казачьему Хутору" style="width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border-radius: 4px;">
+                </div>
+                
+                <p style="font-size: 15px; margin-bottom: 15px; color: #5c3a21;">Открыть маршрут в приложении:</p>
+
+                <a href="https://yandex.ru/maps/org/kazachiy_khutor/1206209448/?ll=39.101712%2C45.033198&z=15.58" target="_blank" rel="noopener noreferrer" class="nav-btn" style="margin-bottom: 10px;">
+                    ☀️ В Яндекс Картах
+                </a>
+
+                <a href="https://www.google.com/maps/place/Казачий+хутор/@45.0331696,39.0990936,17z/data=!3m1!4b1!4m6!3m5!1s0x40f05af1c5e964e5:0xed70e5daea12b61c!8m2!3d45.0331696!4d39.1016739!16s%2Fg%2F1hf2r0pcn?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="nav-btn" style="background-color: #fdf5e6;">
+                    🌍 В Google Maps
+                </a>
+            </section>
+
+            <div class="slavic-border-bottom"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

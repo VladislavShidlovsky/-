@@ -1,0 +1,330 @@
+/* Общие настройки стиля с принудительным сглаживанием расписных шрифтов */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Pangolin', cursive, serif; /* Рукописный стиль для обычного текста */
+    background-color: #2b1d0c;
+    color: #4a2e1b;
+    overflow-x: hidden;
+    
+    /* Принудительное аппаратное сглаживание шрифтов на Android и Windows (как на iPhone) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ЭКРАН 1: Обложка сказки (Первая страница) */
+.cover-bg {
+    background-image: url('cover.jpg'); /* Ваша фоновая картинка-обложка */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Опускает контент вниз, открывая верх рисунка */
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.cover-content-wrapper {
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
+    padding: 80px 0 40px 0; /* Плавное затемнение нижней части экрана */
+    display: flex;
+    justify-content: center;
+}
+
+.cover-content {
+    text-align: center;
+    background: rgba(253, 245, 230, 0.95); /* Цвет пергаментной бумаги */
+    padding: 35px 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    border: 4px double #8b0000; /* Царская рамочка */
+    max-width: 400px;
+    width: 85%;
+}
+
+.fairy-tale-title {
+    font-family: 'Ruslan Display', cursive; /* Старославянская вязь */
+    font-size: 32px;
+    font-weight: normal;
+    color: #8b0000;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    /* Мягкие микротени для сглаживания и объема букв на всех устройствах */
+    text-shadow: 0.5px 0.5px 1px rgba(139, 0, 0, 0.2), 0 0 1px rgba(212, 175, 55, 0.2);
+}
+
+.fairy-tale-subtitle {
+    font-size: 16px;
+    font-style: italic;
+    margin: 0 0 25px 0;
+    color: #5c3a21;
+}
+
+/* СТИЛИ ВСЕХ СКАЗОЧНЫХ КНОПОК */
+#open-btn, .calendar-btn, .nav-btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-family: 'Ruslan Display', cursive;
+    cursor: pointer;
+    border: 2px solid #8b0000;
+    background-color: #d4af37; /* Золотой цвет */
+    color: #8b0000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    text-align: center;
+}
+
+#open-btn:hover, .calendar-btn:hover, .nav-btn:hover {
+    background-color: #8b0000;
+    color: #d4af37;
+}
+
+/* Кнопка внесения события под таймером */
+.calendar-btn {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+
+/* Кнопки приложений карт */
+.nav-btn {
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 auto;
+    max-width: 280px;
+}
+
+/* ЭКРАН 2: Свиток приглашения */
+.parchment-scroll {
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fdf5e6; 
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    border-left: 8px solid #e6ca97; /* Имитация деревянных краев свитка */
+    border-right: 8px solid #e6ca97;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    position: relative;
+    z-index: 2;
+}
+
+/* АНИМАЦИЯ 1: Эффект вертикального раскручивания свитка при открытии */
+.parchment-animated {
+    animation: unfoldParchment 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    transform-origin: top center;
+}
+@keyframes unfoldParchment {
+    0% { transform: scaleY(0.01); opacity: 0; }
+    100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Блоки разделения текста */
+.tale-block {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+/* Незначительные отличия оттенков между картами-блоками */
+.tale-block.headline {
+    background-color: #faebd7; 
+    border-bottom: 2px dashed #bc9c82;
+}
+.tale-block:nth-child(even) { 
+    background-color: #f5eccd; /* Легкий золотистый оттенок */
+}
+.tale-block:nth-child(odd):not(.headline) { 
+    background-color: #fffaf0; /* Легкий молочный оттенок */
+}
+
+.names {
+    font-family: 'Ruslan Display', cursive;
+    font-size: 38px;
+    font-weight: normal;
+    color: #8b0000;
+    margin: 15px 0;
+    /* Размытие теней для безупречной каллиграфии на Android */
+    text-shadow: 1px 1px 2px rgba(139, 0, 0, 0.15);
+}
+
+.block-title {
+    font-family: 'Ruslan Display', cursive;
+    font-size: 24px;
+    font-weight: normal;
+    color: #8b0000;
+    margin: 0 0 25px 0;
+    text-shadow: 0.5px 0.5px 1px rgba(139, 0, 0, 0.2);
+}
+
+.main-text {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* СТИЛИЗАЦИЯ СКАЗОЧНОГО ТАЙМЕРА (Адаптив под смартфоны) */
+.timer { 
+    display: flex; 
+    justify-content: center; 
+    gap: 8px; 
+}
+.timer-item {
+    background: rgba(139, 0, 0, 0.05);
+    border: 1px solid #8b0000;
+    padding: 8px 4px;
+    width: 22%; 
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.timer-item span { 
+    font-size: 22px; 
+    font-weight: bold; 
+    color: #8b0000; 
+    display: block; 
+}
+.timer-item p { 
+    margin: 2px 0 0 0; 
+    font-size: 12px; 
+    color: #5c3a21; 
+}
+
+/* Оформление фотографии молодых и расписания */
+.wedding-photo { 
+    width: 100%; 
+    max-width: 400px; 
+    height: auto; 
+    border: 6px solid #f5eccd; 
+    outline: 1px solid #8b0000; 
+    transition: transform 0.5s ease; 
+}
+.place-name { 
+    font-family: 'Ruslan Display', cursive; 
+    font-size: 26px; 
+    font-weight: normal; 
+    color: #8b0000; 
+    margin-top: 10px; 
+}
+.timeline { 
+    max-width: 320px; 
+    margin: 0 auto; 
+    text-align: left; 
+}
+.timeline-row { 
+    display: flex; 
+    margin-bottom: 12px; 
+    border-bottom: 1px dotted #8b0000; 
+    padding-bottom: 5px; 
+}
+.timeline-row .time { 
+    font-weight: bold; 
+    color: #8b0000; 
+    min-width: 60px; 
+    font-size: 18px; 
+}
+.gift-text { 
+    font-style: italic; 
+    font-size: 16px; 
+    line-height: 1.6; 
+    color: #5c3a21; 
+    background: #faebd7; 
+    padding: 15px; 
+    border-left: 4px solid #8b0000; 
+}
+
+/* АНИМАЦИЯ 2: Прорисовывающиеся слева направо славянские каемки свитка */
+.slavic-border-top, .slavic-border-bottom { 
+    height: 12px; 
+    background-image: linear-gradient(45deg, #8b0000 25%, transparent 25%), linear-gradient(-45deg, #8b0000 25%, transparent 25%); 
+    background-size: 16px 16px; 
+    animation: drawBorder 1.8s ease forwards;
+}
+@keyframes drawBorder {
+    0% { width: 0%; opacity: 0; }
+    100% { width: 100%; opacity: 1; }
+}
+
+/* АНИМАЦИЯ 3: Эффект покачивающегося «живого» сказочного портрета молодых */
+.live-portrait {
+    animation: slowBreathing 6s ease-in-out infinite alternate;
+}
+@keyframes slowBreathing {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.02) rotate(0.5deg); }
+    100% { transform: scale(1) rotate(-0.5deg); }
+}
+
+/* СКАЗОЧНЫЙ ИНТЕРАКТИВ: Медленно плывущие по небу объемные облака */
+.fairy-tale-clouds {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Облака проплывают НАЗАРУЖИ за текстом свитка */
+    overflow: hidden;
+    opacity: 0.35; /* Полупрозрачность для гармонии с фоном */
+}
+
+.cloud {
+    position: absolute;
+    background: #fffaf0;
+    border-radius: 100px;
+    box-shadow: 0 8px 30px rgba(230, 202, 151, 0.3);
+}
+.cloud::before, .cloud::after {
+    content: ''; position: absolute; background: #fffaf0; border-radius: 50%;
+}
+
+/* Размеры и тайминги анимации движения трех облаков */
+.cloud-1 { width: 180px; height: 60px; top: 10%; left: -200px; animation: moveCloud 35s linear infinite; }
+.cloud-1::before { width: 80px; height: 80px; top: -40px; left: 30px; }
+.cloud-1::after { width: 100px; height: 100px; top: -50px; left: 70px; }
+
+.cloud-2 { width: 240px; height: 75px; top: 45%; left: -300px; animation: moveCloud 48s linear infinite; animation-delay: 5s; }
+.cloud-2::before { width: 100px; height: 100px; top: -50px; left: 40px; }
+.cloud-2::after { width: 120px; height: 120px; top: -60px; left: 100px; }
+
+.cloud-3 { width: 150px; height: 50px; top: 75%; left: -200px; animation: moveCloud 28s linear infinite; animation-delay: 12s; }
+.cloud-3::before { width: 70px; height: 70px; top: -35px; left: 20px; }
+.cloud-3::after { width: 85px; height: 85px; top: -45px; left: 55px; }
+
+@keyframes moveCloud {
+    0% { transform: translateX(-10%); left: -300px; }
+    100% { transform: translateX(110vw); left: 100%; }
+}
+
+/* Вращающаяся кнопка музыкального плеера «Гусли» */
+#music-player-btn {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    border: 2px solid #8b0000; 
+    background: #d4af37;
+    font-size: 24px; 
+    cursor: pointer; 
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.player-playing { 
+    animation: spin 4s linear infinite; 
+}
+@keyframes spin { 
+    100% { transform: rotate(360deg); } 
+}
+
+/* Служебный класс сокрытия контента */
+.hidden { 
+    display: none !important; 
+}
